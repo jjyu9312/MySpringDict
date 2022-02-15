@@ -1,13 +1,26 @@
 package com.example.myspringdict.controller;
 
-import lombok.RequiredArgsConstructor;
+import com.example.myspringdict.repository.LoginForm;
+import com.example.myspringdict.service.LoginService;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
-@Slf4j
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+
 @Controller
-@RequiredArgsConstructor
 public class LoginController {
     private final LoginService loginService;
+
+    public LoginController(LoginService loginService) {
+        this.loginService = loginService;
+    }
 
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
